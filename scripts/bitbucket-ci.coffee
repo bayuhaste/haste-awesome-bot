@@ -33,3 +33,35 @@ module.exports = (robot) ->
 
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
+
+  robot.router.post '/habot/bitbucket-custom-pr', (req, res) ->
+    try
+      data = JSON.parse req.body.payload
+      resp = req.body
+    catch err
+      robot.emit 'error', err
+      
+    # resp = req.body
+
+    # Really don't understand why this isn't in the response body
+    # https://confluence.atlassian.com/bitbucket/event-payloads-740262817.html#EventPayloads-HTTPHeaders
+    type = req.headers['x-event-key']
+
+    # Fallback to default Pull request room
+    room = "pull-requests"
+
+    # Slack special formatting
+    # if robot.adapterName is 'slack'
+    #   slack_adapter_obj = require('hubot-slack')
+    event = new SlackPullRequestEvent(robot, resp, type)
+
+    msg =
+      message:
+        reply_to: room
+        room: room
+      content: event.getMessage()
+    robot.messageRoom room, "```Notification:#{event.getMessage()}```"
+
+    # Close response
+    res.writeHead 204, { 'Content-Length': 0 }
+    res.end()
