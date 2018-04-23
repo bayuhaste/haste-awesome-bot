@@ -48,14 +48,14 @@ module.exports = (robot) ->
   #   author = commits[0].author.raw
   #   branch = data.push.changes[0].new.name
   #   msg = author + ' pushed ' + commits.length + ' commits to ' + data.repository.name + ':\n'
-    commit =""
-    i = 0
-    len = datax.length
-    while i < len
-      commit = datax[i]
-      msg += commit + '\n'
-      i++
-    robot.messageRoom room, "```Notification: #{commit} \n```"
+    # commit = null
+    # i = 0
+    # len = datax.length
+    # while i < len
+    #   commit = datax[i]
+    #   msg += commit + '\n'
+    #   i++
+    # robot.messageRoom room, "```Notification: #{commit} \n```"
     # Close response
     res.send 'OK'
     res.writeHead 204, { 'Content-Length': 0 }
