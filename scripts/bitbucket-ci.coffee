@@ -37,11 +37,8 @@ module.exports = (robot) ->
   robot.router.post '/habot/bitbucket-custom-pr', (req, res) ->
     # Fallback to default Pull request room
     room = "pull-requests"
-    data = null
-    try
-      datax1 = JSON.parse req.body.payload
-    catch err
-      datax1 = 'error'
+    data  = if req.body.payload? then JSON.parse req.body.payload else req.body
+
     # datax1 = JSON.parse req.body.payload
     # datax2 = JSON.stringify({req.body})
   #   data = req.body
@@ -55,7 +52,7 @@ module.exports = (robot) ->
   #     commit = commits[i]
   # msg += commit.links.html.href + '\n' + '[' + branch + '] ' + commit.message + '\n'
   # i++
-    robot.messageRoom room, "```Notification: #{datax1} \n```"
+    robot.messageRoom room, "```Notification: #{data[0]} \n```"
     # Close response
     res.send 'OK'
     res.writeHead 204, { 'Content-Length': 0 }
