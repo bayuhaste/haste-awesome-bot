@@ -82,6 +82,15 @@ module.exports = (robot) ->
     robot.messageRoom room, "I have a secret: #{secret}"
   
     res.send 'OK'
+
+  robot.router.post '/hubot/chatsecrets/pull-requests', (req, res) ->
+    room   = pull-requests
+    data   = "JSON.parse req.body.payload"
+    secret = "data.secret"
+  
+    robot.messageRoom room, "I have a secret: #{secret}"
+  
+    res.send 'OK'
   
   robot.error (err, res) ->
     robot.logger.error "DOES NOT COMPUTE"
