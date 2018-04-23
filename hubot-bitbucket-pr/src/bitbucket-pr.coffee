@@ -387,3 +387,18 @@ module.exports = (robot) ->
     # Close response
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
+
+module.exports = (robot) ->
+  robot.router.post '/hubot/bitbucket-prs', (req, res) ->
+    resp = req.body
+    
+    msg =
+        message:
+          reply_to: room
+          room: room
+        content: "bitbucket-prs-post"
+
+    robot.emit 'slack-attachment', msg
+
+    res.writeHead 204, { 'Content-Length': 0 }
+    res.end()
