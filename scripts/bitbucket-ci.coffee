@@ -39,7 +39,7 @@ module.exports = (robot) ->
     room = "pull-requests"
     data = null
     typex = req.headers["X-Event-Key"]
-    type = req.HTTPHeaders[1]
+    type = req.headers[1]
 
     try
       data = JSON.parse req.body.payload
@@ -63,7 +63,7 @@ module.exports = (robot) ->
     #     reply_to: room
     #     room: room
     #   content: event.getMessage()
-    robot.messageRoom room, "```Notification:#{typex} #{type}```"
+    robot.messageRoom room, "```Notification:#{typex} and #{type}```"
 
     # Close response
     res.writeHead 204, { 'Content-Length': 0 }
