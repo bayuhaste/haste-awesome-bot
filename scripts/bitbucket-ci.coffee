@@ -45,7 +45,7 @@ module.exports = (robot) ->
       robot.emit 'error', err
 
     datax1 = JSON.stringify({req.body.payload})
-    datax2 = JSON.stringify({req.body})
+    # datax2 = JSON.stringify({req.body})
     
   #   data = req.body
   #   commits = data.push.changes[0].commits
