@@ -38,15 +38,15 @@ module.exports = (robot) ->
     # Fallback to default Pull request room
     room = "pull-requests"
     data = null
-    typex = req.headers["X-Event-Key"]
-    type = req.headers[1]
+    typex = JSON.parse req.headers
+    type = typex[0]
 
     try
       data = JSON.parse req.body.payload
     catch err
       robot.emit 'error', err
       
-    resp = req.body
+    # resp = req.body
 
     # Really don't understand why this isn't in the response body
     # https://confluence.atlassian.com/bitbucket/event-payloads-740262817.html#EventPayloads-HTTPHeaders
@@ -63,7 +63,11 @@ module.exports = (robot) ->
     #     reply_to: room
     #     room: room
     #   content: event.getMessage()
-    robot.messageRoom room, "```Notification:#{typex} and #{type}```"
+    commits = data.push.changes[0].commits
+    author = commits[0].author.raw
+    branch = data.push.changes[0].new.name
+
+    robot.messageRoom room, "```Notification:#{typex} and #{type} : #{data}: #{commits}, #{author}, #{branch}```"
 
     # Close response
     res.writeHead 204, { 'Content-Length': 0 }
