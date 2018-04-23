@@ -44,7 +44,8 @@ module.exports = (robot) ->
     catch err
       robot.emit 'error', err
 
-    datax = JSON.stringify({data})
+    datax1 = JSON.stringify({req.body.payload})
+    datax2 = JSON.stringify({req.body})
     
   #   data = req.body
   #   commits = data.push.changes[0].commits
@@ -58,7 +59,7 @@ module.exports = (robot) ->
   # msg += commit.links.html.href + '\n' + '[' + branch + '] ' + commit.message + '\n'
   # i++
 
-    robot.messageRoom room, "```Notification: #{datax}"
+    robot.messageRoom room, "```Notification: #{datax1} \n #{datax2}```"
 
     # Close response
     res.writeHead 204, { 'Content-Length': 0 }
