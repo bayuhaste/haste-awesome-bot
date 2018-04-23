@@ -38,36 +38,27 @@ module.exports = (robot) ->
     # Fallback to default Pull request room
     room = "pull-requests"
     data = null
-    typex = JSON.parse req.headers
-    type = typex[0]
-
+    
     try
       data = JSON.parse req.body.payload
     catch err
       robot.emit 'error', err
-      
-    # resp = req.body
 
-    # Really don't understand why this isn't in the response body
-    # https://confluence.atlassian.com/bitbucket/event-payloads-740262817.html#EventPayloads-HTTPHeaders
+    datax = JSON.stringify({data})
     
-    # type = 'x-event-key';
+  #   data = req.body
+  #   commits = data.push.changes[0].commits
+  #   author = commits[0].author.raw
+  #   branch = data.push.changes[0].new.name
+  #   msg = author + ' pushed ' + commits.length + ' commits to ' + data.repository.name + ':\n'
+  #   i = 0
+  #   len = commits.length
+  #   while i < len
+  #     commit = commits[i]
+  # msg += commit.links.html.href + '\n' + '[' + branch + '] ' + commit.message + '\n'
+  # i++
 
-    # Slack special formatting
-    # if robot.adapterName is 'slack'
-    #   slack_adapter_obj = require('hubot-slack')
-    # event = new SlackPullRequestEvent(robot, resp, type)
-
-    # msg =
-    #   message:
-    #     reply_to: room
-    #     room: room
-    #   content: event.getMessage()
-    commits = data.push.changes[0].commits
-    author = commits[0].author.raw
-    branch = data.push.changes[0].new.name
-
-    robot.messageRoom room, "```Notification:#{typex} and #{type} : #{data}: #{commits}, #{author}, #{branch}```"
+    robot.messageRoom room, "```Notification: #{datax}"
 
     # Close response
     res.writeHead 204, { 'Content-Length': 0 }
