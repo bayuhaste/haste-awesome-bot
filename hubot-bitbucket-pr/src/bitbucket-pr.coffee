@@ -347,7 +347,13 @@ class SlackPullRequestEvent extends PullRequestEvent
 
 module.exports = (robot) ->
   robot.router.post '/habot/bitbucket-pr', (req, res) ->
-    resp = req.body
+    try
+      data = JSON.parse req.body.payload
+      resp = req.body
+    catch err
+      robot.emit 'error', err
+      
+    # resp = req.body
 
     # Really don't understand why this isn't in the response body
     # https://confluence.atlassian.com/bitbucket/event-payloads-740262817.html#EventPayloads-HTTPHeaders
@@ -367,37 +373,39 @@ module.exports = (robot) ->
           room: room
         content: event.getMessage()
 
+      robot.messageRoom room, "```Notification:#{event.getMessage()}```"
+
       # Slack adapter changed how attachments are handled in v4;
       # this is an ugly hack that checks for the existence
       # of a depreciated exposed property
-      if slack_adapter_obj.SlackRawMessage?
-        robot.emit 'slack-attachment', msg
+      # if slack_adapter_obj.SlackRawMessage?
+      #   robot.emit 'slack-attachment', msg
 
-      else
-        payload =
-          attachments: [msg.content]
-        robot.send room: room, payload
+      # else
+      #   payload =
+      #     attachments: [msg.content]
+      #   robot.send room: room, payload
 
     # For hubot adapters that are not Slack
-    else
-      event = new PullRequestEvent(robot, resp, type)
-      msg = event.getMessage()
-      robot.messageRoom room, msg
+    # else
+    #   event = new PullRequestEvent(robot, resp, type)
+    #   msg = event.getMessage()
+    #   robot.messageRoom room, msg
 
     # Close response
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
 
-  robot.router.post '/habot/bitbucket-prs', (req, res) ->
-    resp = req.body
+  # robot.router.post '/habot/bitbucket-prs', (req, res) ->
+  #   resp = req.body
     
-    msg =
-        message:
-          reply_to: room
-          room: room
-        content: "bitbucket-prs-post"
+  #   msg =
+  #       message:
+  #         reply_to: room
+  #         room: room
+  #       content: "bitbucket-prs-post"
 
-    robot.emit 'slack-attachment', msg
+  #   robot.emit 'slack-attachment', msg
 
-    res.writeHead 204, { 'Content-Length': 0 }
-    res.end()
+  #   res.writeHead 204, { 'Content-Length': 0 }
+  #   res.end()
