@@ -42,7 +42,7 @@ module.exports = (robot) ->
       data = JSON.parse req.body.payload
     catch err
       robot.emit 'error', err
-    datax1 = JSON.stringify(req.body.payload)
+    datax1 = req.body.payload.repository.name
     # datax2 = JSON.stringify({req.body})
   #   data = req.body
   #   commits = data.push.changes[0].commits
