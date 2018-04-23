@@ -38,15 +38,12 @@ module.exports = (robot) ->
     # Fallback to default Pull request room
     room = "pull-requests"
     data = null
-    
     try
       data = JSON.parse req.body.payload
     catch err
       robot.emit 'error', err
-
-    datax1 = JSON.stringify({req.body.payload})
+    datax1 = JSON.stringify(req.body.payload)
     # datax2 = JSON.stringify({req.body})
-    
   #   data = req.body
   #   commits = data.push.changes[0].commits
   #   author = commits[0].author.raw
@@ -58,9 +55,7 @@ module.exports = (robot) ->
   #     commit = commits[i]
   # msg += commit.links.html.href + '\n' + '[' + branch + '] ' + commit.message + '\n'
   # i++
-
-    robot.messageRoom room, "```Notification: #{datax1} \n #{datax2}```"
-
+    robot.messageRoom room, "```Notification: #{datax1} \n```"
     # Close response
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
