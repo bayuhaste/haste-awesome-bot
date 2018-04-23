@@ -40,7 +40,7 @@ module.exports = (robot) ->
     data  = if req.body.payload? then JSON.parse req.body.payload else req.body
 
     datax = JSON.stringify(data)
-    if datax? then res.send 'datax' else res.send 'error'
+    # if datax? then res.send 'datax' else res.send 'error'
 
     # if datax['truncated']? then res.send "data0:#{datax['truncated']}" else res.send 'error'
 
