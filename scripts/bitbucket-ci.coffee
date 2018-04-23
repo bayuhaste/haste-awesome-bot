@@ -52,7 +52,7 @@ module.exports = (robot) ->
     i = 0
     len = datax.length
     while i < len
-      commit = commits[i]
+      commit = datax[i]
       msg += commit + '\n'
       i++
     robot.messageRoom room, "```Notification: #{commit} \n```"
