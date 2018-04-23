@@ -35,9 +35,13 @@ module.exports = (robot) ->
     res.end()
 
   robot.router.post '/habot/bitbucket-custom-pr', (req, res) ->
+    # Fallback to default Pull request room
+    room = "pull-requests"
+    data = null
+
     try
       data = JSON.parse req.body.payload
-      resp = req.body
+      # resp = req.body
     catch err
       robot.emit 'error', err
       
@@ -45,10 +49,8 @@ module.exports = (robot) ->
 
     # Really don't understand why this isn't in the response body
     # https://confluence.atlassian.com/bitbucket/event-payloads-740262817.html#EventPayloads-HTTPHeaders
-    type = req.headers['x-event-key']
-
-    # Fallback to default Pull request room
-    room = "pull-requests"
+    # type = req.headers['x-event-key']
+    type = 'x-event-key';
 
     # Slack special formatting
     # if robot.adapterName is 'slack'
