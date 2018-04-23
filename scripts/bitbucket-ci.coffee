@@ -39,7 +39,8 @@ module.exports = (robot) ->
     room = "pull-requests"
     data  = if req.body.payload? then JSON.parse req.body.payload else req.body
 
-    datax = JSON.stringify(data);
+    datax = JSON.stringify(data)
+    if datax? then res.send 'datax' else res.send 'error'
 
     # datax1 = JSON.parse req.body.payload
     # datax2 = JSON.stringify({req.body})
@@ -57,7 +58,6 @@ module.exports = (robot) ->
     #   i++
     # robot.messageRoom room, "```Notification: #{commit} \n```"
     # Close response
-    res.send req
     res.send 'OK'
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
