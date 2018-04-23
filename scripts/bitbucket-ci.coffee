@@ -10,7 +10,12 @@ module.exports = (robot) ->
       secret = "data.secret"
       room = 'pull-requests'
       robot.messageRoom room, "I have a secret: #{secret}"
-      #res.emit 'slack-attachment', msg
+      msg =
+        message:
+          reply_to: "pull-requests"
+          room: "pull-requests"
+        content: "bitbucket-prs-post"
+      res.emit 'slack-attachment', msg
     else
       res.reply "BitBucket is in #{status} status."
 
