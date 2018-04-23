@@ -388,7 +388,6 @@ module.exports = (robot) ->
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
 
-module.exports = (robot) ->
   robot.router.post '/hubot/bitbucket-prs', (req, res) ->
     resp = req.body
     
