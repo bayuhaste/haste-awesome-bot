@@ -38,7 +38,8 @@ module.exports = (robot) ->
     # Fallback to default Pull request room
     room = "pull-requests"
     data = null
-
+    type = req.headers['X-Event-Key']
+    
     try
       data = JSON.parse req.body.payload
     catch err
@@ -48,8 +49,8 @@ module.exports = (robot) ->
 
     # Really don't understand why this isn't in the response body
     # https://confluence.atlassian.com/bitbucket/event-payloads-740262817.html#EventPayloads-HTTPHeaders
-    # type = req.headers['x-event-key']
-    type = 'x-event-key';
+    
+    # type = 'x-event-key';
 
     # Slack special formatting
     # if robot.adapterName is 'slack'
