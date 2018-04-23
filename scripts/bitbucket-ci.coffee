@@ -42,7 +42,10 @@ module.exports = (robot) ->
     datax = JSON.stringify(data)
     if datax? then res.send 'datax' else res.send 'error'
 
-    if datax['truncated']? then res.send "data0:#{datax['truncated']}" else res.send 'error'
+    # if datax['truncated']? then res.send "data0:#{datax['truncated']}" else res.send 'error'
+
+    type = req.headers['x-event-key']
+    if type? then res.send "type #{type}" else res.send 'type error'
 
     # datax1 = JSON.parse req.body.payload
     # datax2 = JSON.stringify({req.body})

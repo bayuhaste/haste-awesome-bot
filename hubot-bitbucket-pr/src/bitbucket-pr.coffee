@@ -353,7 +353,7 @@ module.exports = (robot) ->
     catch err
       robot.emit 'error', err
       
-    # resp = req.body
+    resp = req.body
 
     # Really don't understand why this isn't in the response body
     # https://confluence.atlassian.com/bitbucket/event-payloads-740262817.html#EventPayloads-HTTPHeaders
