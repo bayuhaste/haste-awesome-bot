@@ -28,13 +28,8 @@ module.exports = (robot) ->
       data = JSON.parse req.body.payload
     catch err
       robot.emit 'error', err
-    msg =
-        message:
-          reply_to: "pull-requests"
-          room: "pull-requests"
-        content: "bitbucket-prs-post"
-
-    robot.messageRoom room, "message:#{msg}"
+    
+    robot.messageRoom room, "```message:#{data}```"
 
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
