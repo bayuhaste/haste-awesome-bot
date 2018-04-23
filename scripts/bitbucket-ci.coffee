@@ -39,10 +39,10 @@ module.exports = (robot) ->
     room = "pull-requests"
     data = null
     try
-      data = JSON.parse req.body.payload
+      datax1 = JSON.parse req.body.payload
     catch err
-      robot.emit 'error', err
-    datax1 = req.body.payload.repository.name
+      datax1 = 'error'
+    # datax1 = JSON.parse req.body.payload
     # datax2 = JSON.stringify({req.body})
   #   data = req.body
   #   commits = data.push.changes[0].commits
@@ -57,5 +57,6 @@ module.exports = (robot) ->
   # i++
     robot.messageRoom room, "```Notification: #{datax1} \n```"
     # Close response
+    res.send 'OK'
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
