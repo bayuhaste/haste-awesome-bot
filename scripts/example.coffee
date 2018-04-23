@@ -74,7 +74,7 @@ module.exports = (robot) ->
   #     res.send "Not annoying you right now, am I?"
   
   
-  robot.router.post '/hubot/chatsecrets/:room', (req, res) ->
+  robot.router.post '/habot/chatsecrets/:room', (req, res) ->
     room   = req.params.room
     data   = JSON.parse req.body.payload
     secret = data.secret

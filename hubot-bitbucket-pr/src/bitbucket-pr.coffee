@@ -346,7 +346,7 @@ class SlackPullRequestEvent extends PullRequestEvent
       ]
 
 module.exports = (robot) ->
-  robot.router.post '/hubot/bitbucket-pr', (req, res) ->
+  robot.router.post '/habot/bitbucket-pr', (req, res) ->
     resp = req.body
 
     # Really don't understand why this isn't in the response body
@@ -388,7 +388,7 @@ module.exports = (robot) ->
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
 
-  robot.router.post '/hubot/bitbucket-prs', (req, res) ->
+  robot.router.post '/habot/bitbucket-prs', (req, res) ->
     resp = req.body
     
     msg =

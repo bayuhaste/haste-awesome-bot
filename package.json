@@ -6,7 +6,6 @@
   "description": "haste-awesome-bot who does awesome jobs.",
   "dependencies": {
     "hubot": "^2.19.0",
-    "hubot-bitbucket-pr": "^1.0.1",
     "hubot-diagnostics": "0.0.2",
     "hubot-google-images": "^0.2.7",
     "hubot-google-translate": "^0.2.1",
