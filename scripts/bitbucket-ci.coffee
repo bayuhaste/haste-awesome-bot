@@ -41,7 +41,6 @@ module.exports = (robot) ->
 
     try
       data = JSON.parse req.body.payload
-      # resp = req.body
     catch err
       robot.emit 'error', err
       
@@ -57,11 +56,11 @@ module.exports = (robot) ->
     #   slack_adapter_obj = require('hubot-slack')
     # event = new SlackPullRequestEvent(robot, resp, type)
 
-    msg =
-      message:
-        reply_to: room
-        room: room
-      content: event.getMessage()
+    # msg =
+    #   message:
+    #     reply_to: room
+    #     room: room
+    #   content: event.getMessage()
     robot.messageRoom room, "```Notification:#{type}```"
 
     # Close response
