@@ -39,6 +39,8 @@ module.exports = (robot) ->
     room = "pull-requests"
     data  = if req.body.payload? then JSON.parse req.body.payload else req.body
 
+    datax = JSON.stringify(data);
+
     # datax1 = JSON.parse req.body.payload
     # datax2 = JSON.stringify({req.body})
   #   data = req.body
@@ -46,13 +48,14 @@ module.exports = (robot) ->
   #   author = commits[0].author.raw
   #   branch = data.push.changes[0].new.name
   #   msg = author + ' pushed ' + commits.length + ' commits to ' + data.repository.name + ':\n'
-  #   i = 0
-  #   len = commits.length
-  #   while i < len
-  #     commit = commits[i]
-  # msg += commit.links.html.href + '\n' + '[' + branch + '] ' + commit.message + '\n'
-  # i++
-    robot.messageRoom room, "```Notification: #{data[0]} \n```"
+    commit =""
+    i = 0
+    len = datax.length
+    while i < len
+      commit = commits[i]
+      msg += commit + '\n'
+      i++
+    robot.messageRoom room, "```Notification: #{commit} \n```"
     # Close response
     res.send 'OK'
     res.writeHead 204, { 'Content-Length': 0 }
