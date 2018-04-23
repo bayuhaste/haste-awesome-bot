@@ -7,7 +7,7 @@ module.exports = (robot) ->
   robot.respond /bitbucket (.*) status/i, (res) ->
     status = res.match[1]
     if status is "ready"
-      res.reply "BitBucket is ready."
+      res.emit "BitBucket is ready."
     else
       res.reply "BitBucket is in #{status} status."
 
@@ -21,7 +21,6 @@ module.exports = (robot) ->
         content: "bitbucket-prs-post"
 
     robot.emit 'slack-attachment', msg
-    res.reply "see pull-requests"
 
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
