@@ -15,7 +15,7 @@ module.exports = (robot) ->
           reply_to: "pull-requests"
           room: "pull-requests"
         content: "bitbucket-prs-post"
-      res.emit 'slack-attachment', msg
+      robot.messageRoom room, "message:#{msg}"
     else
       res.reply "BitBucket is in #{status} status."
 
