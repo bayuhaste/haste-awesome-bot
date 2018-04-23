@@ -1,0 +1,65 @@
+{
+  "_from": "hubot-bitbucket-pr@^1.0.1",
+  "_id": "hubot-bitbucket-pr@1.0.1",
+  "_inBundle": false,
+  "_integrity": "sha1-wTsD4pxAbPPn8HTRjdIS4UDLs1U=",
+  "_location": "/hubot-bitbucket-pr",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "hubot-bitbucket-pr@^1.0.1",
+    "name": "hubot-bitbucket-pr",
+    "escapedName": "hubot-bitbucket-pr",
+    "rawSpec": "^1.0.1",
+    "saveSpec": null,
+    "fetchSpec": "^1.0.1"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/hubot-bitbucket-pr/-/hubot-bitbucket-pr-1.0.1.tgz",
+  "_shasum": "c13b03e29c406cf3e7f074d18dd212e140cbb355",
+  "_spec": "hubot-bitbucket-pr@^1.0.1",
+  "_where": "D:\\Haste\\Haste.Awesome.Bot",
+  "author": {
+    "name": "Tim Shedor",
+    "email": "tshedor@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/hubot-scripts/hubot-bitbucket-pr/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "coffee-script": "~1.7.1"
+  },
+  "deprecated": false,
+  "description": "Holler whenever anything happens around a Bitbucket pull request",
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "coffee-script": "^1.9.3",
+    "coffeelint": "^1.9.4",
+    "hubot-test-helper": "0.0.6",
+    "mocha": "^2.2.5"
+  },
+  "homepage": "https://github.com/hubot-scripts/hubot-bitbucket-pr#readme",
+  "keywords": [
+    "hubot",
+    "hubot-scripts",
+    "bitbucket",
+    "pull-request",
+    "slack"
+  ],
+  "license": "MIT",
+  "main": "./src/bitbucket-pr",
+  "name": "hubot-bitbucket-pr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hubot-scripts/hubot-bitbucket-pr.git"
+  },
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script/register --reporter spec"
+  },
+  "version": "1.0.1"
+}
