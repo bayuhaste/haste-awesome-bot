@@ -19,16 +19,22 @@ module.exports = (robot) ->
     else
       res.reply "BitBucket is in #{status} status."
 
-  robot.router.post '/hubot/test-post', (req, res) ->
-    resp = req.body
+  robot.router.post '/habot/test-post', (req, res) ->
+    room = "pull-requests"
+    data = null
+    #resp = req.body
     
+    try
+      data = JSON.parse req.body.payload
+    catch err
+      robot.emit 'error', err
     msg =
         message:
           reply_to: "pull-requests"
           room: "pull-requests"
         content: "bitbucket-prs-post"
 
-    robot.emit 'slack-attachment', msg
+    robot.messageRoom room, "message:#{msg}"
 
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
