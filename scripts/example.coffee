@@ -84,7 +84,7 @@ module.exports = (robot) ->
     res.send 'OK'
 
   robot.router.post '/hubot/chatsecrets/pull-requests', (req, res) ->
-    room   = pull-requests
+    room   = "pull-requests"
     data   = "JSON.parse req.body.payload"
     secret = "data.secret"
   
