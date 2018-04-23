@@ -8,6 +8,7 @@ module.exports = (robot) ->
     status = res.match[1]
     if status is "ready"
       secret = "data.secret"
+      room = 'pull-requests'
       robot.messageRoom room, "I have a secret: #{secret}"
       #res.emit 'slack-attachment', msg
     else
