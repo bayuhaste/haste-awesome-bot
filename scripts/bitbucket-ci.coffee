@@ -57,6 +57,7 @@ module.exports = (robot) ->
     #   i++
     # robot.messageRoom room, "```Notification: #{commit} \n```"
     # Close response
+    res.send req
     res.send 'OK'
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
