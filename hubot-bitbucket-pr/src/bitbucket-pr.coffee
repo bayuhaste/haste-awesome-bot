@@ -373,7 +373,7 @@ module.exports = (robot) ->
           room: room
         content: event.getMessage()
 
-      robot.messageRoom room, "```Notification:#{event.getMessage()}```"
+      # robot.messageRoom room, "```Notification:#{event.getMessage()}```"
 
       # Slack adapter changed how attachments are handled in v4;
       # this is an ugly hack that checks for the existence
