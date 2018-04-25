@@ -1,0 +1,18 @@
+{
+  "name": "haste-awesome-bot",
+  "description": "haste-awesome-bot",
+  "scripts": {
+    "postdeploy": "bin/hubot",
+    "pr-predestroy": "bin/hubot"
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ]
+}
