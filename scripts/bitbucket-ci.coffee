@@ -47,6 +47,8 @@ module.exports = (robot) ->
     type = req.headers['x-event-key']
     if type? then res.send "type #{type}" else res.send 'type error'
 
+    robot.messageRoom room, "```Notification habot bb-custom-pr: #{type} ```"
+
     # datax1 = JSON.parse req.body.payload
     # datax2 = JSON.stringify({req.body})
   #   data = req.body
@@ -63,6 +65,6 @@ module.exports = (robot) ->
     #   i++
     # robot.messageRoom room, "```Notification: #{commit} \n```"
     # Close response
-    res.send 'OK'
+    # res.send 'OK'
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
