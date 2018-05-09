@@ -35,39 +35,13 @@ module.exports = (robot) ->
     res.end()
 
   robot.router.post '/habot/bitbucket-custom-pr', (req, res) ->
-    # Fallback to default Pull request room
     room = "pull-requests"
     data  = if req.body.payload? then JSON.parse req.body.payload else req.body
-
-    datax = req.body
-    # if datax? then res.send 'datax' else res.send 'error'
-
-    # if datax['truncated']? then res.send "data0:#{datax['truncated']}" else res.send 'error'
-
+    dataReq = req.body
+   
     type = req.headers['x-event-key']
-    # if type? then res.send "trigger type #{type}" else res.send 'type error'
-
-    if type? then res.send datax else res.send 'type error'
-
-    robot.messageRoom room, "```Notification habot bb-custom-pr: #{type} #{datax.actor.username}```"
-
-    # datax1 = JSON.parse req.body.payload
-    # datax2 = JSON.stringify({req.body})
-  #   data = req.body
-  #   commits = data.push.changes[0].commits
-  #   author = commits[0].author.raw
-  #   branch = data.push.changes[0].new.name
-  #   msg = author + ' pushed ' + commits.length + ' commits to ' + data.repository.name + ':\n'
-    # commit = null
-    # i = 0
-    # len = datax.length
-    # while i < len
-    #   commit = datax[i]
-    #   msg += commit + '\n'
-    #   i++
-    # robot.messageRoom room, "```Notification: #{commit} \n```"
-    # Close response
-    # res.send 'OK'
-    # res.JSON(req.body);
+    if type === "pullrequest:created"
+      robot.messageRoom room, "Pull request from `#{dataReq.pullrequest.actor.username}` has been created\n review in: #{dataReq.pullrequest.links.html}"
+    
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
