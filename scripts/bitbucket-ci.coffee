@@ -49,7 +49,7 @@ module.exports = (robot) ->
 
     if type? then res.send datax else res.send 'type error'
 
-    robot.messageRoom room, "```Notification habot bb-custom-pr: #{type}```"
+    robot.messageRoom room, "```Notification habot bb-custom-pr: #{type} #{datax.actor.username}```"
 
     # datax1 = JSON.parse req.body.payload
     # datax2 = JSON.stringify({req.body})
