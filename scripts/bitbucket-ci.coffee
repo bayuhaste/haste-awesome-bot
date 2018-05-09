@@ -39,7 +39,7 @@ module.exports = (robot) ->
     room = "pull-requests"
     data  = if req.body.payload? then JSON.parse req.body.payload else req.body
 
-    datax = JSON.stringify(data)
+    datax = req.body
     # if datax? then res.send 'datax' else res.send 'error'
 
     # if datax['truncated']? then res.send "data0:#{datax['truncated']}" else res.send 'error'
@@ -47,9 +47,9 @@ module.exports = (robot) ->
     type = req.headers['x-event-key']
     # if type? then res.send "trigger type #{type}" else res.send 'type error'
 
-    if type? then res.send data else res.send 'type error'
+    if type? then res.send datax else res.send 'type error'
 
-    robot.messageRoom room, "```Notification habot bb-custom-pr: #{type} ```"
+    robot.messageRoom room, "```Notification habot bb-custom-pr: #{type}```"
 
     # datax1 = JSON.parse req.body.payload
     # datax2 = JSON.stringify({req.body})
