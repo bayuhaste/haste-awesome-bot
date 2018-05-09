@@ -40,7 +40,7 @@ module.exports = (robot) ->
     dataReq = req.body
    
     type = req.headers['x-event-key']
-    if type === "pullrequest:created"
+    if type == "pullrequest:created"
       robot.messageRoom room, "Pull request from `#{dataReq.pullrequest.actor.username}` has been created\n review in: #{dataReq.pullrequest.links.html}"
     
     res.writeHead 204, { 'Content-Length': 0 }
