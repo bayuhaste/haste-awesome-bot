@@ -38,8 +38,9 @@ module.exports = (robot) ->
     room = "pull-requests"
     data  = if req.body.payload? then JSON.parse req.body.payload else req.body
     dataReq = req.body
-    if req.headers['x-event-key'] is "pullrequest:created"
-    robot.messageRoom room, "Pull request from `#{dataReq.actor.username}` has been created\n review in: #{dataReq.links.html}"
+
+    # if req.headers['x-event-key'] is "pullrequest:created"
+    robot.messageRoom room, "Pull request from `#{dataReq.actor.username}` has been created." #\n review in: #{dataReq.links.html}"
     
     res.send(dataReq.actor)
     res.writeHead 204, { 'Content-Length': 0 }
