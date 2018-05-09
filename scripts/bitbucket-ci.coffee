@@ -19,29 +19,28 @@ module.exports = (robot) ->
     else
       res.reply "BitBucket is in #{status} status."
 
-  robot.router.post '/habot/test-post', (req, res) ->
-    room = "pull-requests"
-    data = null
-    #resp = req.body
+  # robot.router.post '/habot/test-post', (req, res) ->
+  #   room = "pull-requests"
+  #   data = null
+  #   #resp = req.body
     
-    try
-      data = JSON.parse req.body.payload
-    catch err
-      robot.emit 'error', err
+  #   try
+  #     data = JSON.parse req.body.payload
+  #   catch err
+  #     robot.emit 'error', err
     
-    robot.messageRoom room, "```message:#{data}```"
+  #   robot.messageRoom room, "```message:#{data}```"
 
-    res.writeHead 204, { 'Content-Length': 0 }
-    res.end()
+  #   res.writeHead 204, { 'Content-Length': 0 }
+  #   res.end()
 
   robot.router.post '/habot/bitbucket-custom-pr', (req, res) ->
     room = "pull-requests"
     data  = if req.body.payload? then JSON.parse req.body.payload else req.body
     dataReq = req.body
-
-    if req.headers['x-event-key'] == 'pullrequest:created'
-      robot.messageRoom room, "Pull request from `#{dataReq.actor.username}` has been created\n review in: #{dataReq.links.html}"
+    if req.headers['x-event-key'] is "pullrequest:created"
+    robot.messageRoom room, "Pull request from `#{dataReq.actor.username}` has been created\n review in: #{dataReq.links.html}"
     
-    res.send()
+    res.send(dataReq.actor)
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
