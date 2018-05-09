@@ -9,13 +9,13 @@ module.exports = (robot) ->
     if status is "ready"
       secret = "data.secret"
       room = 'pull-requests'
-      robot.messageRoom room, "I have a secret: #{secret}"
+      # robot.messageRoom room, "I have a secret: #{secret}"
       msg =
         message:
-          reply_to: "pull-requests"
+          reply_to: "requester-reply"
           room: "pull-requests"
         content: "bitbucket-prs-post"
-      robot.messageRoom room, "message:#{msg}"
+      robot.messageRoom room, "message:#{msg.content},#{msg.message.reply_to}"
     else
       res.reply "BitBucket is in #{status} status."
 
@@ -66,5 +66,6 @@ module.exports = (robot) ->
     # robot.messageRoom room, "```Notification: #{commit} \n```"
     # Close response
     # res.send 'OK'
+    res.JSON(req.body);
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
