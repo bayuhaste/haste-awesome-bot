@@ -45,7 +45,9 @@ module.exports = (robot) ->
     # if datax['truncated']? then res.send "data0:#{datax['truncated']}" else res.send 'error'
 
     type = req.headers['x-event-key']
-    if type? then res.send "type #{type}" else res.send 'type error'
+    # if type? then res.send "trigger type #{type}" else res.send 'type error'
+
+    if type? then res.send data else res.send 'type error'
 
     robot.messageRoom room, "```Notification habot bb-custom-pr: #{type} ```"
 
@@ -66,6 +68,6 @@ module.exports = (robot) ->
     # robot.messageRoom room, "```Notification: #{commit} \n```"
     # Close response
     # res.send 'OK'
-    res.JSON(req.body);
+    # res.JSON(req.body);
     res.writeHead 204, { 'Content-Length': 0 }
     res.end()
