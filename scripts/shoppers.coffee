@@ -27,10 +27,10 @@ module.exports = (robot) ->
       console.log "client:error"
       console.log err
 
-    client.query("SELECT * FROM tbl_customer_clusters ORDER BY customer_id DESC;", (err, result) ->
+    client.query("SELECT * FROM tbl_customer_clusters ORDER BY cluster_id ASC;", (err, result) ->
       for row in result.rows
         console.log(JSON.stringify(row))
-        robot.messageRoom "pull-requests", "Customer: #{row.customer_id} Cluster: #{row.cluster_id}"
+        robot.messageRoom "pull-requests", "Shopper `#{row.customer_id}` is in cluster *#{row.cluster_id}*"
     )
     robot.brain.on 'close', ->
       client.end()
@@ -53,9 +53,9 @@ module.exports = (robot) ->
       message = ""
       if (result.rows.length > 0)
         for row in result.rows
-          message += "Specific-customer: #{row.customer_id} in cluster: #{row.cluster_id}"
+          message += "Requested shopper `#{row.customer_id}`, *cluster #{row.cluster_id}*"
       else
-        message += "No customer in  cluster #{customer_id}"
+        message += "_No shopper in cluster #{customer_id}_"
       robot.messageRoom "pull-requests", message
     )
     robot.brain.on 'close', ->
@@ -80,9 +80,9 @@ module.exports = (robot) ->
       if (result.rows.length > 0)
         message += "In cluster #{cluster_id}:\n"
         for row in result.rows
-          message += "Customer: #{row.customer_id}\n"
+          message += "Shopper #{row.customer_id}\n"
       else
-        message += "No customer in  cluster #{cluster_id}"
+        message += "_No shopper in cluster #{cluster_id}_"
       console.log(message)
       robot.messageRoom "pull-requests", message
     )
