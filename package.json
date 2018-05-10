@@ -6,6 +6,7 @@
   "description": "haste-awesome-bot who does awesome jobs.",
   "dependencies": {
     "coffee-script": "^1.12.7",
+    "dotenv": "^5.0.1",
     "hubot": "^2.19.0",
     "hubot-diagnostics": "0.0.2",
     "hubot-google-images": "^0.2.7",
