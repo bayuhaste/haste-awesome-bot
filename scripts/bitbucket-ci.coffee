@@ -19,21 +19,6 @@ module.exports = (robot) ->
     else
       res.reply "BitBucket is in #{status} status."
 
-  # robot.router.post '/habot/test-post', (req, res) ->
-  #   room = "pull-requests"
-  #   data = null
-  #   #resp = req.body
-    
-  #   try
-  #     data = JSON.parse req.body.payload
-  #   catch err
-  #     robot.emit 'error', err
-    
-  #   robot.messageRoom room, "```message:#{data}```"
-
-  #   res.writeHead 204, { 'Content-Length': 0 }
-  #   res.end()
-
   robot.router.post '/habot/bitbucket-custom-pr', (req, res) ->
     room = "pull-requests"
     data  = if req.body.payload? then JSON.parse req.body.payload else req.body

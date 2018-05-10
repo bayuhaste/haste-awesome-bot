@@ -56,27 +56,6 @@ module.exports = (robot) ->
       res.send "Who you calling 'slow'?"
     , 60 * 1000
   
-  # annoyIntervalId = null
-  
-  # robot.respond /annoy me/, (res) ->
-  #   if annoyIntervalId
-  #     res.send "AAAAAAAAAAAEEEEEEEEEEEEEEEEEEEEEEEEIIIIIIIIHHHHHHHHHH"
-  #     return
-  
-  #   res.send "Hey, want to hear the most annoying sound in the world?"
-  #   annoyIntervalId = setInterval () ->
-  #     res.send "AAAAAAAAAAAEEEEEEEEEEEEEEEEEEEEEEEEIIIIIIIIHHHHHHHHHH"
-  #   , 1000
-  
-  # robot.respond /unannoy me/, (res) ->
-  #   if annoyIntervalId
-  #     res.send "GUYS, GUYS, GUYS!"
-  #     clearInterval(annoyIntervalId)
-  #     annoyIntervalId = null
-  #   else
-  #     res.send "Not annoying you right now, am I?"
-  
-  
   robot.router.post '/habot/chatsecrets/:room', (req, res) ->
     room   = req.params.room
     data   = JSON.parse req.body.payload
@@ -86,15 +65,6 @@ module.exports = (robot) ->
   
     res.send 'OK'
 
-  robot.router.post '/hubot/chatsecrets/pull-requests', (req, res) ->
-    room = 'pull-requests'
-    data = "JSON.parse req.body.payload"
-    secret = "data.secret"
-    robot.messageRoom room, "I have a example secret"
-  
-    #res.send 'OK'
-    res.end()
-  
   robot.error (err, res) ->
     robot.logger.error "DOES NOT COMPUTE"
   
