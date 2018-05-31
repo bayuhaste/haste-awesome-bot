@@ -2,6 +2,7 @@
 #   Shopper-related scripts 
 #
 # Notes:
+# add note to redeploy
 
 Postgres = require('pg')
 
